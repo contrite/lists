@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                     ItemModel(isDone: false, title: 'hi stupid face'),
                     ItemModel(isDone: true, title: 'hi ship farter'),
                     ItemModel(isDone: false, title: 'hi pink ponk pooper'),
+                    ItemModel(isDone: false, title: 'whoosh!!!'),
                   ],
                 ),
                 const SizedBox(height: 25),
