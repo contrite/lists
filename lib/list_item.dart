@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ItemModel {
-  ItemModel({required String this.title, required bool this.isDone});
+  ItemModel({required this.title, required this.isDone});
   String title = "";
   bool isDone = false;
 }
@@ -17,6 +17,7 @@ class ListItem extends StatefulWidget {
   int doneItems = 0;
   int totalItems = 0;
   List<ItemModel> items = [];
+  double containerHeight = 0;
 
   @override
   State<ListItem> createState() => _ListItemState();
@@ -45,7 +46,7 @@ class _ListItemState extends State<ListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
       decoration: BoxDecoration(
         color: const Color(0xFFE7EAF0),
         borderRadius: BorderRadius.circular(15.0),
@@ -66,6 +67,8 @@ class _ListItemState extends State<ListItem> {
       ),
       width: 280,
       // height: 100,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.fastOutSlowIn,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -75,7 +78,7 @@ class _ListItemState extends State<ListItem> {
                 child: Text(widget.title,
                     style: GoogleFonts.mulish(
                         fontSize: 18,
-                        color: Color(0xFF5D7082),
+                        color: const Color(0xFF5D7082),
                         fontWeight: FontWeight.bold,
                         letterSpacing: 4))),
           ),
@@ -92,13 +95,22 @@ class _ListItemState extends State<ListItem> {
                 child: Text('•   ' + item.title,
                     style: GoogleFonts.mulish(
                         fontSize: 14,
-                        color: Color(0xFF5D7082),
+                        color: const Color(0xFF5D7082),
                         decoration:
                             item.isDone ? TextDecoration.lineThrough : null,
                         decorationThickness: 2,
-                        decorationColor: Color(0xFF5D7082))),
+                        decorationColor: const Color(0xFF5D7082))),
               ),
             ),
+          IconButton(
+              onPressed: () {
+                widget.items.add(ItemModel(title: "New Guy!!", isDone: false));
+                setState(() {});
+              },
+              splashRadius: 1.0,
+              padding: const EdgeInsets.only(left: 20),
+              color: const Color(0xFF5D7082),
+              icon: const Icon(Icons.add_circle_outline)),
           const SizedBox(height: 10),
           Container(
             alignment: Alignment.centerRight,
