@@ -46,7 +46,7 @@ class _ListItemState extends State<ListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
+    return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFE7EAF0),
         borderRadius: BorderRadius.circular(15.0),
@@ -67,8 +67,6 @@ class _ListItemState extends State<ListItem> {
       ),
       width: 280,
       // height: 100,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.fastOutSlowIn,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -104,8 +102,10 @@ class _ListItemState extends State<ListItem> {
             ),
           IconButton(
               onPressed: () {
-                widget.items.add(ItemModel(title: "New Guy!!", isDone: false));
-                setState(() {});
+                setState(() {
+                  widget.items
+                      .add(ItemModel(title: "New Guy!!", isDone: false));
+                });
               },
               splashRadius: 1.0,
               padding: const EdgeInsets.only(left: 20),
